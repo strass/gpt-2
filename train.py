@@ -375,12 +375,12 @@ def main(tpu_cluster=None):
 
 def main_tpu():
     # Get the TPU's location
-    tpu_cluster = TPUClusterResolver().get_master()
-    print(tpu_cluster)
-    #with tf.Session(tpu_cluster) as sess:
-    #    sess.run(tpu.initialize_system())
-    #    main()
-    #    sess.run(tpu.shutdown_system())
+    # tpu_cluster = TPUClusterResolver().get_master()
+    # print(tpu_cluster)
+    with tf.Session(tpu_cluster) as sess:
+        sess.run(tpu.initialize_system())
+        main()
+        sess.run(tpu.shutdown_system())
     main(tpu_cluster=tpu_cluster)
 
 if __name__ == '__main__':
